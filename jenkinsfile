@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/Akashwaghmode/applicationwithdockercompse.git'
+            }
+        }
+        stage('Docker-deployment') {
+            steps {
+                sh 'cd /var/lib/jenkins/workspace/Laravel-app-pipeline/'
+                sh 'docker-compose up --build -d''
+            }
+        }
+    }
+}
